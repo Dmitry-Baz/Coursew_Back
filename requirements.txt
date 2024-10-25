@@ -1,0 +1,27 @@
+# 3. Создаём папку на Яндекс.Диске для хранения изображений
+url = 'https://cloud-api.yandex.net/v1/disk/resources'
+params = {
+    'path': '/Py-114'
+}
+headers = {
+    'Authorization': 'y0_AgAAAAAF63IeAADLWwAAAAEV4OoiAAAVbWH9w0FHnoRP6Usgoc7vkoyeoA'
+}
+
+'''''
+class YD_VKBazyk:
+    def __init__(self, token):  # Исправлено на __init__
+        self.headers = {'Authorization': f'OAuth {token}'}
+
+    def create_folder(self, folder_name):
+        response = requests.put(url='https://cloud-api.yandex.net/v1/disk/resources',
+                                headers=self.headers,
+                                params={'path': folder_name})
+        return response.status_code  # Можно также возвращать response.json() для получения информации о результате
+
+# Пример использования
+ya_token = 'ваш_токен'  # Убедитесь, что у вас корректный токен
+ya_token = os.getenv('YA_TOKEN') 
+yd_VKBazyk = YD_VKBazyk(ya_token)
+status_code = yd_VKBazyk.create_folder('Py-114 - 115')
+print(f'Status code: {status_code}')
+'''
